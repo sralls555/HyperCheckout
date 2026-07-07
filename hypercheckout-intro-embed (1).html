@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HyperCheckout · Introduction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0a1628; --navy-2:#0f1f38; --orange:#ff5a1f; --orange-tint:#fff1ea;
+    --ink:#0a1628; --ink-2:#3a4658; --ink-3:#6b7686;
+    --line:#e4e8ee; --line-2:#d4dae3;
+    --bg:#ffffff; --bg-2:#f7f9fc; --bg-3:#eef2f8;
+    --code-bg:#0a1628;
+    --be:#3b6fb0; --be-bg:#eef4fb; --fe:#ff5a1f; --fe-bg:#fff1ea;
+    --note-bg:#eef4fb; --note-bd:#3b6fb0; --imp-bg:#fff7ec; --imp-bd:#e08a1e;
+    --ok-bg:#e9f7ef; --ok-bd:#1a9d5a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  html,body{height:auto;}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);background:var(--bg);font-size:15px;line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:8px 4px 28px;}
+  a{color:var(--orange);text-decoration:none;font-weight:600;}
+  a:hover{text-decoration:underline;}
+  code,.mono{font-family:'JetBrains Mono',monospace;}
+
+  /* hero band */
+  .intro-hero{background:linear-gradient(120deg,var(--bg-2),#fff);border:1px solid var(--line);padding:26px 26px 24px;}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+  .intro-hero h1{font-size:29px;font-weight:800;letter-spacing:-.6px;line-height:1.15;margin-bottom:10px;}
+  .intro-hero p{font-size:16px;color:var(--ink-2);max-width:64ch;}
+  .intro-hero p b{color:var(--ink);font-weight:600;}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;}
+  .chip{font-size:11px;font-weight:600;padding:3px 10px;background:var(--bg-3);color:var(--ink-2);font-family:'JetBrains Mono';letter-spacing:.3px;}
+  .chip.ok{background:var(--ok-bg);color:var(--ok-bd);}
+
+  section{margin-top:34px;}
+  h2{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:8px;}
+  h3{font-size:15px;font-weight:700;margin:20px 0 7px;}
+  p.lead{font-size:15px;color:var(--ink-2);margin-bottom:6px;max-width:66ch;}
+  p.body{font-size:14.5px;color:var(--ink-2);margin:9px 0;max-width:66ch;}
+  p.body b{color:var(--ink);font-weight:600;}
+  p.body code,li code{font-family:'JetBrains Mono';font-size:12.5px;background:var(--bg-3);padding:1px 5px;}
+
+  ul.ticks{list-style:none;margin:12px 0;max-width:66ch;}
+  ul.ticks li{position:relative;padding-left:24px;margin:9px 0;font-size:14.5px;color:var(--ink-2);}
+  ul.ticks li::before{content:"→";position:absolute;left:0;color:var(--orange);font-family:'JetBrains Mono';font-weight:600;}
+  ul.ticks li b{color:var(--ink);font-weight:600;}
+
+  /* two-surface cards */
+  .surfaces{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+  .surface{border:1px solid var(--line);padding:18px;background:var(--bg);}
+  .surface .tag{display:inline-block;font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:.4px;padding:2px 8px;margin-bottom:10px;}
+  .surface.be .tag{background:var(--be-bg);color:var(--be);}
+  .surface.fe .tag{background:var(--fe-bg);color:var(--fe);}
+  .surface h4{font-size:15px;font-weight:700;margin-bottom:5px;}
+  .surface p{font-size:13px;color:var(--ink-3);line-height:1.5;}
+
+  /* flow map */
+  .flowmap{border:1px solid var(--line);margin-top:16px;overflow:hidden;}
+  .flowmap-legend{display:flex;gap:18px;padding:11px 16px;background:var(--bg-2);border-bottom:1px solid var(--line);font-size:12px;font-weight:600;}
+  .flowmap-legend .lg{display:flex;align-items:center;gap:7px;color:var(--ink-2);}
+  .flowmap-legend .sw{width:11px;height:11px;flex:none;}
+  .flowmap-legend .sw.be{background:var(--be);} .flowmap-legend .sw.fe{background:var(--fe);}
+  .flowrow{display:grid;grid-template-columns:34px 1fr;border-top:1px solid var(--line);}
+  .flowrow:first-of-type{border-top:none;}
+  .flow-n{background:var(--bg-2);display:grid;place-items:center;font-family:'JetBrains Mono';font-size:12px;font-weight:600;color:var(--ink-3);border-right:1px solid var(--line);}
+  .flow-c{padding:12px 15px;display:flex;gap:11px;align-items:flex-start;}
+  .flow-side{font-family:'JetBrains Mono';font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 7px;flex:none;margin-top:2px;}
+  .flow-side.be{background:var(--be-bg);color:var(--be);}
+  .flow-side.fe{background:var(--fe-bg);color:var(--fe);}
+  .flow-txt{font-size:13.5px;color:var(--ink-2);}
+  .flow-txt b{color:var(--ink);}
+  .flow-txt code{font-family:'JetBrains Mono';font-size:12px;background:var(--bg-3);padding:1px 5px;}
+
+  /* callouts */
+  .hint{display:flex;gap:11px;padding:13px 15px;margin:16px 0;font-size:14px;border-left:3px solid;max-width:66ch;}
+  .hint.info{background:var(--note-bg);border-color:var(--note-bd);}
+  .hint.warn{background:var(--imp-bg);border-color:var(--imp-bd);}
+  .hint .ic{flex:none;font-weight:700;font-family:'JetBrains Mono';}
+  .hint.info .ic{color:var(--note-bd);} .hint.warn .ic{color:var(--imp-bd);}
+  .hint code{font-family:'JetBrains Mono';font-size:12.5px;background:rgba(0,0,0,.06);padding:1px 5px;}
+  .hint b{color:var(--ink);}
+
+  /* payment methods grid */
+  .pm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+  .pm{border:1px solid var(--line);padding:15px;background:var(--bg);}
+  .pm .pm-ic{font-size:18px;margin-bottom:9px;}
+  .pm h4{font-size:14px;font-weight:700;margin-bottom:3px;}
+  .pm p{font-size:12px;color:var(--ink-3);line-height:1.45;}
+
+  /* good-to-know capability cards */
+  .gtk{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px;}
+  .gtk-card{border:1px solid var(--line);border-left:3px solid var(--orange);padding:16px 18px;background:var(--bg);}
+  .gtk-card h4{font-size:15px;font-weight:700;margin-bottom:5px;display:flex;align-items:center;gap:9px;}
+  .gtk-card h4 .badge{font-family:'JetBrains Mono';font-size:9.5px;font-weight:700;letter-spacing:.4px;padding:2px 7px;background:var(--bg-3);color:var(--ink-3);}
+  .gtk-card h4 .badge.android{background:#e8f6ee;color:#1a7a3d;}
+  .gtk-card p{font-size:13.5px;color:var(--ink-2);max-width:66ch;}
+  .gtk-card p b{color:var(--ink);font-weight:600;}
+  .gtk-card p code{font-family:'JetBrains Mono';font-size:12px;background:var(--bg-3);padding:1px 5px;}
+  .gtk-card ul{list-style:none;margin:8px 0 0;padding:0;}
+  .gtk-card li{position:relative;padding-left:18px;font-size:13px;color:var(--ink-2);margin:5px 0;}
+  .gtk-card li::before{content:"·";position:absolute;left:4px;color:var(--orange);font-weight:700;}
+  .gtk-card li b{color:var(--ink);}
+
+  /* next steps */
+  .next{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;}
+  .next a{border:1px solid var(--line);padding:16px;background:var(--bg);transition:border-color .15s;display:block;}
+  .next a:hover{border-color:var(--orange);text-decoration:none;}
+  .next .n-step{font-family:'JetBrains Mono';font-size:11px;color:var(--orange);font-weight:600;}
+  .next .n-title{font-size:14.5px;font-weight:700;color:var(--ink);margin:5px 0 3px;}
+  .next .n-desc{font-size:12.5px;color:var(--ink-3);line-height:1.45;}
+
+  @media(max-width:640px){
+    .surfaces,.pm-grid,.next{grid-template-columns:1fr;}
+    .intro-hero h1{font-size:24px;}
+    .wrap{padding:4px 2px 24px;}
+  }
+  @media(prefers-color-scheme:dark){
+    /* GitBook dark mode friendliness — keep readable if embedded on a dark theme */
+    :root{
+      --ink:#e7ecf3; --ink-2:#b7c1d0; --ink-3:#8a95a6;
+      --bg:#0f1626; --bg-2:#141d30; --bg-3:#1b2740;
+      --line:#26314a; --line-2:#31405f; --orange-tint:#2a1a12;
+      --note-bg:#16233a; --imp-bg:#2a2113; --ok-bg:#12271c;
+    }
+    .intro-hero{background:linear-gradient(120deg,#141d30,#0f1626);}
+    .hint code,.flow-txt code,p.body code{background:rgba(255,255,255,.08);}
+  }
+  :focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="intro-hero">
+    <div class="eyebrow">HyperCheckout · Introduction</div>
+    <h1>Ship payments with one integration</h1>
+    <p>HyperCheckout is a fully managed, native, cross-platform checkout that blends with your app or website. Your <b>backend</b> creates a session and confirms the result; the <b>SDK</b> renders the payment screen. Integrate once, then enable methods, routing, and retries through configuration rather than new code.</p>
+    <div class="chips">
+      <span class="chip ok">● Production ready</span>
+      <span class="chip">Hosted UI</span>
+      <span class="chip">PCI-DSS handled</span>
+      <span class="chip">Android · iOS · Web · React Native</span>
+    </div>
+  </div>
+
+  <!-- WHAT IT IS -->
+  <section>
+    <h2>What is HyperCheckout</h2>
+    <p class="body">HyperCheckout is a payments orchestrator, not just a checkout UI. You integrate once and get a conversion-optimised payment experience you don't have to build, plus the ability to route volume across multiple gateways. That means <b>fewer app releases for payments</b>, quicker reconciliation, and easier refunds and customer queries.</p>
+    <p class="body">You only ever touch two surfaces:</p>
+    <div class="surfaces">
+      <div class="surface be">
+        <span class="tag">BACKEND</span>
+        <h4>Your server</h4>
+        <p>Create a session, receive webhooks, and read order status. Identical across every platform.</p>
+      </div>
+      <div class="surface fe">
+        <span class="tag">FRONTEND</span>
+        <h4>The SDK</h4>
+        <p>Open the checkout screen with the session token and read the result. Swap only this per platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW A PAYMENT FLOWS -->
+  <section>
+    <h2>How a payment flows</h2>
+    <p class="lead">Map your own code onto these steps. Blue runs on your backend; orange runs in the SDK. The backend half is identical across Android, iOS, Web, and React Native.</p>
+    <div class="flowmap">
+      <div class="flowmap-legend">
+        <span class="lg"><span class="sw be"></span>Backend (your server)</span>
+        <span class="lg"><span class="sw fe"></span>Frontend (SDK)</span>
+      </div>
+      <div class="flowrow"><div class="flow-n">1</div><div class="flow-c"><span class="flow-side be">BE</span><span class="flow-txt">Customer hits checkout. Your server calls <b>Session API</b> <code>POST /session</code> with order id, amount, and currency.</span></div></div>
+      <div class="flowrow"><div class="flow-n">2</div><div class="flow-c"><span class="flow-side be">BE</span><span class="flow-txt">Juspay returns a <code>client_auth_token</code>. Pass it to your client — <b>never</b> your API key.</span></div></div>
+      <div class="flowrow"><div class="flow-n">3</div><div class="flow-c"><span class="flow-side fe">FE</span><span class="flow-txt">SDK initializes with the token and <b>opens the HyperCheckout screen</b>.</span></div></div>
+      <div class="flowrow"><div class="flow-n">4</div><div class="flow-c"><span class="flow-side fe">FE</span><span class="flow-txt">Customer pays. HyperCheckout handles method selection, 3DS, retries, and routing.</span></div></div>
+      <div class="flowrow"><div class="flow-n">5</div><div class="flow-c"><span class="flow-side be">BE</span><span class="flow-txt">Juspay sends a <b>webhook</b> to your server with the authoritative outcome.</span></div></div>
+      <div class="flowrow"><div class="flow-n">6</div><div class="flow-c"><span class="flow-side be">BE</span><span class="flow-txt">Your server confirms with <b>Order Status API</b> <code>GET /orders/{order_id}</code> before fulfilling.</span></div></div>
+    </div>
+    <div class="hint warn"><span class="ic">!</span><div>The SDK callback can be missed if the app is killed mid-payment. The <b>webhook + Order Status API</b> are the source of truth. Always reconcile server-side before fulfilling.</div></div>
+  </section>
+
+  <!-- PAYMENT METHODS -->
+  <section>
+    <h2>Payment methods, out of the box</h2>
+    <p class="lead">Enable a method with configuration rather than new code.</p>
+    <div class="pm-grid">
+      <div class="pm"><div class="pm-ic">💳</div><h4>Cards</h4><p>New and saved cards with tokenization and 3DS 2.0.</p></div>
+      <div class="pm"><div class="pm-ic">🏦</div><h4>Net banking</h4><p>Direct bank debit across supported banks.</p></div>
+      <div class="pm"><div class="pm-ic">📲</div><h4>UPI &amp; intent</h4><p>App-invoke journeys with major UPI apps.</p></div>
+      <div class="pm"><div class="pm-ic">🗓</div><h4>EMI</h4><p>Standard, No-Cost, and Cardless EMI.</p></div>
+      <div class="pm"><div class="pm-ic">👛</div><h4>Wallets</h4><p>Major prepaid wallets, debit or redirection.</p></div>
+      <div class="pm"><div class="pm-ic">🕒</div><h4>BNPL &amp; COD</h4><p>Buy Now Pay Later and Cash on Delivery.</p></div>
+    </div>
+  </section>
+
+  <!-- GOOD TO KNOW -->
+  <section>
+    <h2>Good to know</h2>
+    <p class="lead">Three HyperCheckout behaviours that affect how you build and what you should expect at runtime.</p>
+    <div class="gtk">
+
+      <div class="gtk-card">
+        <h4>Dynamic routing <span class="badge">runtime</span></h4>
+        <p>When you connect more than one payment processor, Juspay can route each transaction to the best-performing gateway automatically. It's why a payment may land on a different gateway than you'd expect. The mechanism:</p>
+        <ul>
+          <li>A <b>score from 0 to 1</b> is maintained per gateway-and-payment-method combination, in a 30-minute window.</li>
+          <li>The score <b>drops when a transaction starts</b> and <b>rises when it succeeds</b>.</li>
+          <li>When a score falls below your configured <b>threshold</b>, routing moves to another gateway that supports the method with a better score.</li>
+        </ul>
+        <p style="margin-top:8px;">Requires association with more than one payment processor. Works alongside health-based and static routing rules.</p>
+      </div>
+
+      <div class="gtk-card">
+        <h4>Over-the-air updates (OTA) <span class="badge">releases</span></h4>
+        <p>Configuration changes — styling, reordering payment methods — and many new payment features ship as <b>over-the-air updates</b>, without an app release. Plan your payment changes around this: you don't need an app-store submission to reorder methods or restyle the sheet.</p>
+      </div>
+
+      <div class="gtk-card">
+        <h4>One-click payments <span class="badge android">Android only</span></h4>
+        <p>VISA Safe Click is a network-authentication one-click flow for repeat users on low-value transactions. It completes faster than a full 3DS flow. Note the constraint: it's <b>available on Android only</b> and applies below a value threshold, so don't assume it on iOS or Web.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PREREQUISITES -->
+  <section>
+    <h2>Before you start</h2>
+    <ul class="ticks">
+      <li>A <b>Merchant ID</b> and <b>API key</b> from the Juspay Dashboard (start in sandbox).</li>
+      <li>A <b>webhook URL</b> configured to receive authoritative outcomes.</li>
+      <li>Sandbox and production use different base URLs and keys — <code>sandbox.juspay.in</code> vs <code>api.juspay.in</code>. Swap both to go live.</li>
+    </ul>
+    <div class="hint info"><span class="ic">i</span><div>The response field that matters is <code>client_auth_token</code> — pass it to the client. It expires in 15 minutes and is scoped to one order.</div></div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section>
+    <h2>Next steps</h2>
+    <div class="next">
+      <a href="#"><div class="n-step">STEP 01</div><div class="n-title">Prerequisites</div><div class="n-desc">Get your keys and configure webhooks.</div></a>
+      <a href="#"><div class="n-step">STEP 02</div><div class="n-title">Quickstart</div><div class="n-desc">Create a session and take your first test charge.</div></a>
+      <a href="#"><div class="n-step">STEP 03</div><div class="n-title">Handle the result</div><div class="n-desc">Reconcile with webhooks and Order Status.</div></a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Best-effort height hint for embed hosts that honor it (GitBook may ignore; page still renders fine).
+  (function(){
+    function report(){
+      var hgt = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      try{ parent.postMessage({type:'resize',height:hgt},'*'); }catch(e){}
+      try{ parent.postMessage('height:'+hgt,'*'); }catch(e){}
+    }
+    window.addEventListener('load',report);
+    setTimeout(report,400); setTimeout(report,1200);
+  })();
+</script>
+</body>
+</html>
